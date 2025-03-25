@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>유튜브 영상 보기</title>
+</head>
+<body>
+    <h2>채널 영상 불러오기</h2>
+    <form method="POST">
+        <input type="text" name="channel_id" placeholder="채널 주소, ID, 핸들 다 OK!" required>
+        <button type="submit">영상 불러오기</button>
+    </form>
+
+    <ul>
+        {% for video in videos %}
+        <li>
+            <strong>{{ video.title }}</strong><br>
+            <a href="https://youtube.com/watch?v={{ video.videoId }}" target="_blank">영상 보기</a><br>
+            업로드 날짜: {{ video.publishedAt }}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>내 채널 목록</title>
+</head>
+<body>
+    <h2>{{ username }}님의 유튜브 채널</h2>
+
+    <form method="POST">
+        <input type="text" name="channel_name" placeholder="채널 이름" required>
+        <input type="text" name="channel_url" placeholder="채널 URL 또는 ID 또는 핸들" required>
+        <button type="submit">추가하기</button>
+    </form>
+
+    <h3>내가 저장한 채널들</h3>
+    <ul>
+        {% for ch in channels %}
+        <li>
+            <strong>{{ ch.channel_name }}</strong><br>
+            {{ ch.channel_url }}<br>
+            <form method="GET" action="/videos">
+                <input type="hidden" name="channel_id" value="{{ ch.channel_url }}">
+                <button type="submit">영상 보기</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <br><a href="/logout">로그아웃</a>
+</body>
+</html>
